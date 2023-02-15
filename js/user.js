@@ -189,25 +189,29 @@ function createLinks() {
 liLinks.addEventListener("click", assignVarsOfLinksSecton);
 
 function assignVarsOfLinksSecton() {
-  let btnAddLink = document.querySelector(".links-section button");
+  btnAddLink = document.querySelector(".links-section button");
   // btnAddLink.addEventListener("click", createAddLinkBox, true);
-  btnAddLink.onclick = function createAddLinkBox() {
-    document.querySelector(
-      ".links-section .container"
-    ).innerHTML += `<div class='add-link-box'>
-      <span class='close'>X</span>
-      <input autocomplete='off' type='text' name='name' placeholder='الإسم'>
-      <input autocomplete='off' type='link' name='link' placeholder='الرابط'>
-      <input type='submit' value='إضافة'>
-      </div>`;
-    document.querySelector(".links-section .add-link-box").style.display =
-      "flex";
-    let btnCloseAddLink = document.querySelector(".links-section .close");
-    btnCloseAddLink.onclick = function () {
-      //document.querySelector(".links-section .add-link-box").remove();
-      //style.transform ="translate(-50%, -50%) scale(0.5)";
-      document.querySelector(".links-section .add-link-box").style.display =
-        "none";
-    };
-  };
+  btnAddLink.addEventListener("click",createAddLinkBox);
+  
 }
+
+function createAddLinkBox() {
+  btnAddLink.addEventListener("click",createAddLinkBox);
+  document.querySelector(
+    ".links-section .container"
+  ).innerHTML += `<div class='add-link-box'>
+    <span class='close'>X</span>
+    <input autocomplete='off' type='text' name='name' placeholder='الإسم'>
+    <input autocomplete='off' type='link' name='link' placeholder='الرابط'>
+    <input type='submit' value='إضافة'>
+    </div>`;
+  document.querySelector(".links-section .add-link-box").style.display =
+    "flex";
+  let btnCloseAddLink = document.querySelector(".links-section .close");
+  btnCloseAddLink.onclick = function () {
+    //document.querySelector(".links-section .add-link-box").remove();
+    //style.transform ="translate(-50%, -50%) scale(0.5)";
+    document.querySelector(".links-section .add-link-box").style.display =
+      "none";
+  };
+};
