@@ -8,6 +8,8 @@ let mainLinksHref = document.querySelector(".main-links li a");
 let content = document.querySelector("body > .main-content");
 let liPerview = document.querySelector("ul .li-perview");
 let liLinks = document.querySelector("ul .li-links");
+let liSettings = document.querySelector("ul .li-settings");
+let liTheme = document.querySelector("ul .li-theme");
 
 document.onclick = function (e) {
   let t = e.target;
@@ -53,20 +55,27 @@ function checkPath(element) {
   }
 }
 
+// Change An Active "Li" When User Click on "Li"
+function changeActiveLi(li) {
+  //change an active "Li"
+  for (let i = 0; i < mainLinksUl.children.length; i++) {
+    mainLinksUl.children[i].classList.remove("active");
+  }
+  li.classList.add("active");
+};
+
 // ----------------
 /*--------------------------------- Preview Profile Section -------------------------------------------*/
 // On Load
 document.onload = createPeriewProfile();
-liPerview.onclick = function () {
-  for (let i = 0; i < mainLinksUl.children.length; i++) {
-    mainLinksUl.children[i].classList.remove("active");
-  }
-  this.classList.add("active");
-};
+
 liPerview.addEventListener("click", createPeriewProfile);
 
 // Function to Create Perview Profie Section
 function createPeriewProfile() {
+  //change an active "Li"
+  changeActiveLi(liPerview);
+  // Clear previous content From "content" Div
   if (content.firstChild != null) {
     content.removeChild(content.firstChild);
   }
@@ -131,18 +140,14 @@ function createPeriewProfile() {
 /*--------------------------------- Links Section -------------------------------------------*/
 //-- Varibles
 let btnAddLink;
-
-liLinks.onclick = function () {
-  //change an active "Li"
-  for (let i = 0; i < mainLinksUl.children.length; i++) {
-    mainLinksUl.children[i].classList.remove("active");
-  }
-  this.classList.add("active");
-};
+let btnCloseAddLink;
 
 liLinks.addEventListener("click", createLinks);
 
 function createLinks() {
+  //change an active "Li"
+  changeActiveLi(this);
+  // Clear previous content From "content" Div
   if (content.firstChild != null) {
     content.removeChild(content.firstChild);
   }
@@ -185,36 +190,105 @@ function createLinks() {
   linksContainer.append(linksH2, btn, linksBox);
   linksMainDiv.appendChild(linksContainer);
   content.appendChild(linksMainDiv);
+  document.querySelector(
+    ".links-section .container"
+  ).innerHTML += `<div class='add-link-box'>
+    <span class='close'>X</span>
+    <input autocomplete='off' type='text' name='name' placeholder='الإسم'>
+    <input autocomplete='off' type='link' name='link' placeholder='الرابط'>
+    <input type='submit' value='إضافة'>
+    </div>`;
 }
 liLinks.addEventListener("click", assignVarsOfLinksSecton);
 
 function assignVarsOfLinksSecton() {
   btnAddLink = document.querySelector(".links-section button");
-  // btnAddLink.addEventListener("click", createAddLinkBox, true);
+  btnCloseAddLink = document.querySelector(".links-section .close");
   btnAddLink.addEventListener("click",createAddLinkBox);
   function createAddLinkBox() {
-    //btnAddLink.click();
-    document.querySelector(
-      ".links-section .container"
-    ).innerHTML += `<div class='add-link-box'>
-      <span class='close'>X</span>
-      <input autocomplete='off' type='text' name='name' placeholder='الإسم'>
-      <input autocomplete='off' type='link' name='link' placeholder='الرابط'>
-      <input type='submit' value='إضافة'>
-      </div>`;
-    document.querySelector(".links-section .add-link-box").style.display =
-      "flex";
-    let btnCloseAddLink = document.querySelector(".links-section .close");
-    btnCloseAddLink.onclick = function () {
-      //document.querySelector(".links-section .add-link-box").remove();
-      //style.transform ="translate(-50%, -50%) scale(0.5)";
-      document.querySelector(".links-section .add-link-box").style.display =
-        "none";
-    };
+    document.querySelector(".links-section .add-link-box").classList.add("show");
   };
-  btnAddLink.onclick = function (){
-    btnAddLink.click();
+  btnCloseAddLink.onclick = function () {
+    document.querySelector(".links-section .add-link-box").classList.remove("show");
+  };
+  
+}
+
+/*--------------------------------- Account Settings Section -------------------------------------------*/
+liSettings.addEventListener("click",createAccountSettings);
+
+
+function createAccountSettings(){
+  //change an active "Li"
+  changeActiveLi(this);
+  // Clear previous content From "content" Div
+  if (content.firstChild != null) {
+    content.removeChild(content.firstChild);
   }
+
+  let accountSettingsDiv = document.createElement("div");
+  accountSettingsDiv.className = "account-settings-section";
+
+  let accountSettingsContainer = document.createElement("div");
+  accountSettingsContainer.className = "container";
+
+  let accSettH2 = document.createElement("h2");
+  let h2Text = document.createTextNode("إعدادات الحساب");
+  accSettH2.appendChild(h2Text);
+
+  let inpDiv = document.createElement("div");
+  inpDiv.className = "box";
+
+  let name = document.createElement("input");
+  name.type = "text";
+  name.placeholder = "الإسم";
+
+  let username = document.createElement("input");
+  username.type = "username";
+  username.placeholder = "اسم المستخدم";
+
+  let description = document.createElement("textarea");
+  description.placeholder = "وصف قصير";
+
+  let btn = document.createElement("button");
+  btn.className = "save-btn";
+  let btnText = document.createTextNode("حفظ");
+  btn.appendChild(btnText);
+  
+  inpDiv.append(name,username,description,btn);
+
+  accountSettingsContainer.append(accSettH2,inpDiv);
+  accountSettingsDiv.appendChild(accountSettingsContainer);
+  content.appendChild(accountSettingsDiv);
 }
 
 
+/*--------------------------------- Theme Section -------------------------------------------*/
+liTheme.addEventListener("click",createThemeSection);
+
+function createThemeSection(){
+  //change an active "Li"
+  changeActiveLi(this);
+  // Clear previous content From "content" Div
+  if (content.firstChild != null) {
+    content.removeChild(content.firstChild);
+  }
+
+  let themeMainDiv = document.createElement("div");
+  themeMainDiv.className = "theme-section";
+
+  let themeContainer = document.createElement("div");
+  themeContainer.className = "container";
+
+  let themeH2 = document.createElement("h2");
+  let h2Text = document.createTextNode("المظهر");
+  themeH2.appendChild(h2Text);
+
+  let p = document.createElement("p");
+  let txt = document.createTextNode("هذه الميزة غير متوفرة في الوقت الحالي، سيتم تفعيلها قريباً");
+  p.appendChild(txt);
+
+  themeContainer.append(themeH2,p);
+  themeMainDiv.appendChild(themeContainer);
+  content.appendChild(themeMainDiv);
+}
