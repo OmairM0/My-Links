@@ -1,0 +1,175 @@
+/* CSS HEX */
+/* --cedar-chest: #db504aff;
+--blue-jeans: #48acf0ff;
+--ivory: #f4f9e9ff;
+--dark-pastel-green: #20bf55ff;
+--rich-black-fogra-29: #02040fff; */
+
+/* Start Global Rules */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+:root {
+  --main-color: #f7f8fa;
+  --pink: #f0c9c8;
+  --red: #e3342f;
+  --primary-color: #082471;
+  --h-color: #101b3a;
+  --p-color: #777d8e;
+}
+
+body {
+  font-family: "IBM Plex Sans Arabic", sans-serif;
+  direction: rtl;
+  background-color: var(--main-color);
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Small */
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+
+/* Medium */
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+
+/* Large */
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+/* End Global Rules */
+
+/* Start Header */
+.header {
+  background-color: #fff;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header .logo img {
+  width: 170px;
+  max-width: 100%;
+}
+
+.header .login-btn button {
+  background-color: var(--pink);
+  padding: 15px 25px;
+  border-radius: 30px;
+  border: none;
+  color: var(--primary-color);
+  font-weight: 500;
+  transition: 0.5s;
+}
+
+.header .login-btn button:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+/* End Header */
+
+/* Start Form */
+.form form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  justify-content: space-around;
+  align-items: center;
+  /* height: 400px; */
+  height: 70vh;
+}
+
+.form form .active {
+  background-color: #ff3333;
+  color: #fff;
+  padding: 10px 10px;
+  width: 60%;
+  margin: 0;
+}
+
+.form form input {
+  padding: 15px;
+  width: 60%;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  color: #777d8e;
+}
+
+.form form input:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgb(8 36 113 / 25%);
+}
+
+.form form input[type="submit"] {
+  background-color: #f96156;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 20px;
+  font-size: 18px;
+  width: 40%;
+  margin-top: 20px;
+  transition: 0.3s;
+}
+
+.form form input[type="submit"]:hover {
+  background-color: #f96156eb;
+}
+
+@keyframes ripple {
+  0% {
+    width: 0;
+    height: 0;
+    /* opacity: 0.5; */
+  }
+  100% {
+    width: 100%;
+    height: 100%;
+    /* opacity: 0.5; */
+  }
+}
+
+@media (max-width: 993px) {
+  .form form input {
+    width: 100%;
+  }
+
+  .form form .active {
+    width: 100%;
+  }
+}
+
+/* End Form */
