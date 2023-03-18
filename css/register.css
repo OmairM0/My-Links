@@ -103,78 +103,13 @@ ul {
 
 /* End Header */
 
-/* Start Form */
-.form form {
-  display: flex;
-  flex-direction: column;
-  margin-top: 50px;
-  justify-content: space-around;
-  align-items: center;
-  /* height: 400px; */
-  height: 70vh;
-}
-
-.form form .active {
-  background-color: #ff3333;
-  color: #fff;
-  padding: 10px 10px;
-  width: 60%;
-  margin: 0;
-}
-
-.form form input {
-  padding: 15px;
-  width: 60%;
-  border: 1px solid #ced4da;
-  border-radius: 4px;
-  color: #777d8e;
-}
-
-.form form input.err {
-  border: 2px solid #f44336;
-}
-
-.form form input:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.2rem rgb(8 36 113 / 25%);
-}
-
-.form form input[type="submit"] {
-  background-color: #f96156;
-  color: #fff;
+/* Start Contnet */
+.message {
+  text-align: center;
+  margin-top: 60px;
+  font-size: 20px;
+  color: #f96156;
+  line-height: 2;
   font-weight: bold;
-  border-radius: 20px;
-  font-size: 18px;
-  width: 40%;
-  margin-top: 20px;
-  transition: 0.3s;
 }
-
-.form form input[type="submit"]:hover {
-  background-color: #f96156eb;
-}
-
-@keyframes ripple {
-  0% {
-    width: 0;
-    height: 0;
-    /* opacity: 0.5; */
-  }
-  100% {
-    width: 100%;
-    height: 100%;
-    /* opacity: 0.5; */
-  }
-}
-
-@media (max-width: 993px) {
-  .form form input {
-    width: 100%;
-  }
-
-  .form form .active {
-    width: 100%;
-  }
-}
-
-/* End Form */
+/* End Contnet */

@@ -1,3 +1,21 @@
+<?php
+session_start();
+include('../functions.php');
+include('../db.php');
+include('../settings.php');
+$mail = $_SESSION["mail"];
+if(!loggedIn()){
+  header("Location:../login/index.php?err=" . urlencode("out"));
+  exit();
+}
+function getSingleValue($conn, $sql, $parameters)
+    {
+        $q = $conn->prepare($sql);
+        $q->execute($parameters);
+        return $q->fetchColumn();
+    }
+  $username = getSingleValue($conn, "select username from users where email=?", [$mail]);
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,6 +23,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>لوحة التحكم</title>
+    <link rel="icon" type="image/x-icon" href="../imgs/myLinks.png">
     <link rel="stylesheet" href="../css/normalize.css" />
     <link rel="stylesheet" href="../css/user.css" />
     <!-- Font Awesome -->
@@ -22,13 +41,13 @@
     <div class="header">
       <div class="container">
         <div class="logo">
-          <img src="../imgs/logo-links.png" alt="" />
+        <a href=""><img src="../imgs/logo-links.png" alt="" /></a>
         </div>
         <div class="settings">
           <img src="../imgs/link-icon.png" alt="" />
           <ul>
             <li>تفعيل الوضع الليلي</li>
-            <li>تسجيل الخروج</li>
+            <li><a href="http://localhost/My-Links/logout">تسجيل الخروج</a></li>
           </ul>
           <div class="menu-icon">
             <i class="fa-solid fa-bars"></i>
@@ -61,32 +80,19 @@
 
     <!-- Start Profile Link -->
     <div class="profile-link">
-      <div class="link">http://Omlinks/user/YOUR_LINK</div>
+      <div class="link">
+        <p onclick='openTheUserLink()'><i class="fa-solid fa-arrow-up-right-from-square"></i></p>
+        <p class='userLink' onclick='copyLink()'><?php echo $nameOfWebsite.'u/'.$username; ?></p>
+      </div>
     </div>
     <!-- End Profile Link -->
 
-    <!-- Start View Profile -->
-    <!-- <div class="view">
-      <div class="container">
-        <h2>معاينة</h2>
-        <div class="view-box">
-          <div class="img">
-            <img src="../imgs/avatar-0.png" alt="Avatar" />
-          </div>
-          <div class="title">
-            <p class="name">Omair Mohammed</p>
-            <p class="job">Fornt-End Developer</p>
-          </div>
-          <div class="links">
-            <a href="#">المدونة</a>
-            <a href="#">Facebook</a>
-            <a href="#">Twitter</a>
-          </div>
-        </div>
-      </div>
-    </div> -->
-    <!-- End View Profile -->
+    
     <div class="main-content"></div>
+
+    <!-- Start Notification -->
+    <div class='notification'>${text}<div>
+      <!-- End Notification -->
 
     <script src="../js/user.js"></script>
   </body>

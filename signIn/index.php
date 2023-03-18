@@ -1,3 +1,15 @@
+<?php 
+// echo "<pre>";
+//         print_r($_SERVER);
+//         echo "</pre>";
+session_start();
+include('../functions.php');
+include('../settings.php');
+if(loggedIn()){
+    header("Location:../user/index.php");
+    exit();
+}
+?> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +17,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>إنشاء حساب</title>
+    <link rel="icon" type="image/x-icon" href="../imgs/myLinks.png">
     <link rel="stylesheet" href="../css/signIn.css">
     <link rel="stylesheet" href="../css/normalize.css" />
     <!-- Font Awesome -->
@@ -33,48 +46,13 @@
       
       <!-- Start Form -->
 
-      <?php
-      if ($_SERVER["REQUEST_METHOD"] == "POST"){
-        // echo $_POST['name'];
-        // echo $_POST["email"];
-        // echo $_POST["password"];
-        // echo $_POST["username"];
-        $servername = "localhost";
-      $username = "root";
-      $password = "";
-      $db = new PDO("mysql:host=$servername;dbname=links", $username, $password);
-      function isUnique($email){
-        $query = "select * from users where email='$email'";
-        global $db;
-        
-        $result = $db->query($query);
-        // echo $result->num_rows;
-        
-        if($result->rowCount() > 0){
-            return false;
-        }
-        else return true;
-        
-      }
-      }
-      
-      ?>
-
       <div class="form">
         <div class="container">
-            <form id="frm-signIn" action="" method="post">
+            <form id="frm-signIn" action=<?php echo $nameOfWebsite."register/index.php"?> method="POST">
                 <p id="error">
-                <?php
-                echo $_SERVER["REQUEST_METHOD"];
-                if ($_SERVER["REQUEST_METHOD"] == "POST"){
-                  if(isUnique($_POST["email"]) == false){
-                    echo "هذا البريد الإلكتروني مستخدم بالفعل";
-                  }
-                }
-                ?>
                 </p>
-                <input type="text" required name="name" placeholder="الإسم">
-                <input type="email" required name="email" placeholder="البريد الإلكتروني">
+                <input id="name" type="text" required name="name" placeholder="الإسم">
+                <input id="email" type="email" required name="email" placeholder="البريد الإلكتروني">
                 <input id="password" required name="password" type="password" placeholder="كلمة المرور">
                 <input id="username" required name="username" type="username" placeholder="إسم المستخدم">
                 <input type="submit" value="إنشاء الحساب">

@@ -1,0 +1,2 @@
+RewriteEngine on
+RewriteRule ^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$ index.php?username=$0 [QSA]

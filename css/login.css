@@ -108,6 +108,12 @@ a {
   font-size: 35px;
 }
 
+.login-form .err.active {
+  color: #f96156;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
 .login-form form {
   text-align: center;
 }

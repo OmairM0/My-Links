@@ -1,0 +1,127 @@
+/* Start Global Rules */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+:root {
+  --main-color: #f7f8fa;
+  --pink: #f0c9c8;
+  --red: #ff5656;
+  --primary-color: #082471;
+  --h-color: #101b3a;
+  --p-color: #777d8e;
+  --main-transition: 0.3s;
+}
+
+body {
+  font-family: "IBM Plex Sans Arabic", sans-serif;
+  direction: rtl;
+  /* background-color: #fff; */
+  background-color: #f0f0f0;
+  position: relative;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Small */
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+
+/* Medium */
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+
+/* Large */
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+/* End Global Rules */
+
+/* Start User Style */
+.user {
+  text-align: center;
+  margin-top: 12vh;
+}
+
+.user .head img {
+  max-width: 100%;
+  border-radius: 50%;
+  width: 100px;
+}
+
+.user .head .title p.name {
+  /* color: var(--h-color); */
+  color: var(--red);
+  font-weight: bold;
+  font-size: 19px;
+  margin: 0;
+  margin-top: 10px;
+}
+
+.user .head .title p.job,
+.user .head .title p.desc {
+  font-size: 12px;
+  color: #9e9e9e;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.user .head .title p.desc {
+  font-size: 15px;
+}
+
+.user .links {
+  margin-top: 30px;
+}
+
+.user .links a {
+  display: block;
+  margin: auto;
+  background-color: var(--h-color);
+  /* background-color: #ff5656; */
+  margin-bottom: 20px;
+  border-radius: 5px;
+  padding: 15px 0;
+  color: #fff;
+  width: 96%;
+  transition: 0.3s;
+}
+
+.user .links a:hover {
+  background-color: var(--p-color);
+}
+
+@media (min-width: 769px) {
+  .card {
+    max-width: 520px;
+    margin: auto;
+  }
+}
+
+/* End User Style */
