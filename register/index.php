@@ -109,14 +109,8 @@ include('../settings.php');
         if (!checkAll($_POST['name'],$_POST["email"],$_POST["password"],$_POST["username"])) {
             // $_SERVER["HTTP_REFERER"] =null;
             header("Location:../signIn/index.php?er=$sre");
-        } elseif ($state == 0) {
-            echo<<<"appearMessage"
-            <div class='message'>
-            ارسلنا لك رابط التفعل مسبقاً
-            مرحباً $name ،أرسلنا لك رابط تفعيل حسابك إلى $email\nقم بتفعل حسابك من الرابط المرسل إليك.
-            </div>
-            appearMessage;
-        } else {
+        }  else {
+            session_start();
             $_SESSION['email'] = $_POST['email'];
 
             $name  = $_POST['name'];
@@ -125,9 +119,9 @@ include('../settings.php');
             $username = $_POST["username"];
             $token = bin2hex(openssl_random_pseudo_bytes(32));
     
-            $query = $conn->prepare("INSERT INTO `users` (`ID`, `name`, `email`, `password`, `username`,`token`, `description`) VALUES (?,?,?,?,?,?,?)");
+            $query = $conn->prepare("INSERT INTO `users` (`ID`, `name`, `email`, `password`, `username`,`token`, `description`, `job`,`photo`, `state`) VALUES (?,?,?,?,?,?,?,?,?,?)");
     
-            $query->execute([NULL, $name, $email, $password, $username,$token, '']);
+            $query->execute([NULL, $name, $email, $password, $username,$token, '','','',0]);
             $link = $nameOfWebsite."register/activate.php?token=$token";
             $message = "مرحباً $name, رابط تفعيل حسابك هو $link";
             $sender = "From:OmairM1x@gmail.com";
@@ -153,7 +147,16 @@ include('../settings.php');
             // appearMessage;
         }
         
-        
+        // elseif ($state == 0) {
+        //     $name  = $_POST['name'];
+        //     $email =  $_POST["email"];
+        //     echo<<<"appearMessage"
+        //     <div class='message'>
+        //     ارسلنا لك رابط التفعل مسبقاً
+        //     مرحباً $name ،أرسلنا لك رابط تفعيل حسابك إلى $email\nقم بتفعل حسابك من الرابط المرسل إليك.
+        //     </div>
+        //     appearMessage;
+        // }
         
     } else {
         // echo "<pre>";

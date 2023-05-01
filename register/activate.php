@@ -1,5 +1,7 @@
 <?php 
+ob_start();
 include('../db.php');
+include('../settings.php');
 
 ?>
 <!DOCTYPE html>
@@ -45,7 +47,7 @@ include('../db.php');
         }
 
         $token = $_GET['token'];
-        $id = getSingleValue($conn, "select id from users where email=?", [$mail]);
+        $id = getSingleValue($conn, "select id from users where token=?", [$token]);
         $query = "update users set state='1' where token='$token'";
         $setLinks = "INSERT INTO `links-list` (`link-id`, `name-link`, `url`, `user-id`) VALUES (NULL, 'المدونة', '#', $id), (NULL, 'Facebook', '#', $id), (NULL,'Twitter','#',$id)";
         $conn->query($setLinks);
@@ -62,9 +64,12 @@ include('../db.php');
             $_SESSION["pass"] = $userPass;
             header("Location:../user/index.php");
             exit();
+   
         }
         
     }
+  ob_end_flush();
+
     ?>
 </body>
 </html>

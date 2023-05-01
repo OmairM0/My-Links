@@ -1,4 +1,5 @@
 <?php
+ob_start();
 session_start();
 include('../functions.php');
 include('../db.php');
@@ -15,6 +16,7 @@ function getSingleValue($conn, $sql, $parameters)
         return $q->fetchColumn();
     }
   $username = getSingleValue($conn, "select username from users where email=?", [$mail]);
+  ob_end_flush();
 ?>
 <!DOCTYPE html>
 <html lang="en">

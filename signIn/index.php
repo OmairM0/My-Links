@@ -1,4 +1,5 @@
 <?php 
+// ob_start();
 // echo "<pre>";
 //         print_r($_SERVER);
 //         echo "</pre>";
@@ -9,6 +10,7 @@ if(loggedIn()){
     header("Location:../user/index.php");
     exit();
 }
+// ob();
 ?> 
 <!DOCTYPE html>
 <html lang="en">
